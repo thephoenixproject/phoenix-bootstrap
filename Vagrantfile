@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "master" do |master|
     master.vm.hostname = "phoenix-master.local"
     master.vm.network "private_network", ip: "192.168.56.202"
-    master.vm.provision "shell", path: "bootstrap/install-yum-repository.sh"
+    master.vm.provision "shell", path: "bootstrap/create-yum-repository.sh"
   end
 
   config.vm.define "node" do |node|
@@ -15,5 +15,6 @@ Vagrant.configure("2") do |config|
     master.vm.provision "shell" do |shell|
       shell.path = "bootstrap/clone-modules.sh"
       shell.args = [ "https://github.com/thephoenixproject/phoenix-modules.git" ]
+    end
   end
 end
