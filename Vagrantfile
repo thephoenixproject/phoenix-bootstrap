@@ -10,11 +10,12 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "node" do |node|
-    master.vm.hostname = "phoenix-node-1.local"
-    master.vm.network "private_network", ip: "192.168.56.203"
-    master.vm.provision "shell" do |shell|
+    node.vm.hostname = "phoenix-node-1.local"
+    node.vm.network "private_network", ip: "192.168.56.203"
+    node.vm.provision "shell" do |shell|
       shell.path = "bootstrap/clone-modules.sh"
       shell.args = [ "https://github.com/thephoenixproject/phoenix-modules.git" ]
     end
+    node.vm.provision "shell", inline: "echo '192.168.56.202 phoenix-master phoenix-master.local' >> /etc/hosts"
   end
 end
