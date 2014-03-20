@@ -21,4 +21,4 @@ cp "$LOCAL_RPMS_PATH/*.rpm" "$YUMREPO_PATH" || true
 createrepo "$YUMREPO_PATH"
 
 echo "Alias /rpms $YUMREPO_PATH" > /etc/httpd/conf.d/yumrepo.conf
-service httpd restart
+chkconfig --level 345 httpd on && service httpd restart
