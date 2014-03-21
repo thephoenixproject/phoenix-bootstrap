@@ -5,7 +5,7 @@
 
 set -eux
 
-RPMS_TO_DOWNLOAD="sonar-4.1.1-1 jenkins-1.532-1.1"
+RPMS_TO_DOWNLOAD=""
 LOCAL_RPMS_PATH="/vagrant"
 YUMREPO_PATH="/var/yumrepo"
 
