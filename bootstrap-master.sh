@@ -6,7 +6,6 @@
 set -eux
 
 RPMS_TO_DOWNLOAD=""
-LOCAL_RPMS_PATH="/vagrant"
 YUMREPO_PATH="/var/yumrepo"
 
 yum -y install createrepo httpd yum-downloadonly wget
@@ -17,7 +16,6 @@ rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key || true
 
 mkdir -p "$YUMREPO_PATH" && chmod 755 /var/yumrepo
 yum --downloadonly --downloaddir="$YUMREPO_PATH" -y install $RPMS_TO_DOWNLOAD || true
-cp "$LOCAL_RPMS_PATH/*.rpm" "$YUMREPO_PATH" || true
 createrepo "$YUMREPO_PATH"
 
 echo "Alias /rpms $YUMREPO_PATH" > /etc/httpd/conf.d/yumrepo.conf
