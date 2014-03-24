@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
     node.vm.provision "shell" do |shell|
       shell.path = "bootstrap-node.sh"
       shell.args = [
-        "https://github.com/thephoenixproject/phoenix-modules.git",
+        "https://github.com/thephoenixproject/phoenix-node.git",
         "192.168.56.202",
         "phoenix-master"
       ]
